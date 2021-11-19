@@ -17,12 +17,11 @@ depends_on = None
 
 
 def upgrade():
-    op.add_column(table_name='posts', column=sa.Column(
-        'owner_id', sa.Integer(), nullable=False))
+    op.add_column('posts', sa.Column('owner_id', sa.Integer(), nullable=False))
     op.create_foreign_key(constraint_name='posts_users_fk', source_table='posts', local_cols=[
                           'owner_id'], referent_table='users', remote_cols=['id'], ondelete='CASCADE')
 
 
 def downgrade():
     op.drop_constraint(table_name='posts', constraint_name='posts_users_fk')
-    op.drop_column(column_name='owner_id')
+    op.drop_column('posts', 'owner_id')

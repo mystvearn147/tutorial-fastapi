@@ -17,9 +17,8 @@ depends_on = None
 
 
 def upgrade():
-    op.add_column(table_name='posts', column=sa.Column(
-        'content', sa.String(), nullable=False))
+    op.add_column('posts', sa.Column('content', sa.String(), nullable=False))
 
 
 def downgrade():
-    op.drop_column(table_name='posts', column_name='content')
+    op.drop_column('posts', 'content')
